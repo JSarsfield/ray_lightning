@@ -9,14 +9,17 @@ from pytorch_lightning.utilities.rank_zero import rank_zero_only
 
 import ray
 from pytorch_lightning.utilities.rank_zero import rank_zero_info
-from pytorch_lightning.utilities.seed import reset_seed, log
+from pytorch_lightning.utilities.seed import reset_seed
 from ray.util import PublicAPI
 
 from ray_lightning.launchers import RayLauncher
 from ray_lightning.accelerators import \
     _GPUAccelerator  # noqa: F401
 
+import logging
 import os
+
+log = logging.getLogger(__name__)
 
 
 @PublicAPI(stability="beta")
