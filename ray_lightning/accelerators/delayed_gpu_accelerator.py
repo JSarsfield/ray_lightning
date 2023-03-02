@@ -16,10 +16,10 @@ from typing import Dict, List
 import torch
 
 from pytorch_lightning.accelerators import Accelerator,\
-    GPUAccelerator
+    CUDAAccelerator
 
 
-class _GPUAccelerator(GPUAccelerator):
+class _GPUAccelerator(CUDAAccelerator):
     """Accelerator for GPU devices.
 
     adapted from:
@@ -49,12 +49,20 @@ class _GPUAccelerator(GPUAccelerator):
         # modified to always return True
         return True
 
+    # @classmethod
+    # def register_accelerators(cls, accelerator_registry: Dict) -> None:
+    #     # the delayed gpu accelerator is registered as `_gpu`
+    #     # in the accelerator registry
+    #     accelerator_registry.register(
+    #         "_gpu",
+    #         cls,
+    #         description=f"{cls.__class__.__name__}",
+    #     )
+
     @classmethod
     def register_accelerators(cls, accelerator_registry: Dict) -> None:
         # the delayed gpu accelerator is registered as `_gpu`
         # in the accelerator registry
         accelerator_registry.register(
-            "_gpu",
-            cls,
-            description=f"{cls.__class__.__name__}",
+            cls
         )

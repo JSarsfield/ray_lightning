@@ -16,7 +16,7 @@ from pytorch_lightning.accelerators import AcceleratorRegistry
 from ray_lightning.accelerators.delayed_gpu_accelerator import _GPUAccelerator
 
 #  these lines are to register the delayed gpu accelerator as `_gpu`
-ray_accelrator_registry = AcceleratorRegistry.register("ray", _GPUAccelerator, description="Custom ray accelerator")
+ray_accelrator_registry = AcceleratorRegistry.register("_gpu", _GPUAccelerator, description="Custom ray accelerator")
 ACCELERATORS_BASE_MODULE = "ray_lightning.accelerators"
 call_register_accelerators(ray_accelrator_registry, ACCELERATORS_BASE_MODULE)
 
