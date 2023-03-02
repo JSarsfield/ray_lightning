@@ -1,5 +1,5 @@
 from typing import Any, Optional, NamedTuple, Dict, List, Callable
-from pytorch_lightning.utilities.types import _PATH
+from lightning_fabric.utilities.types import _PATH
 from pytorch_lightning.trainer.states import TrainerState
 
 from contextlib import closing

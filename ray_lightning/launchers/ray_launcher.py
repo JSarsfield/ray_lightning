@@ -4,7 +4,7 @@ from collections import defaultdict
 import os
 
 import pytorch_lightning as pl
-from pytorch_lightning.strategies.launchers import _Launcher
+from lightning_fabric.strategies.launchers.base import _Launcher
 from pytorch_lightning.utilities.apply_func import apply_to_collection,\
     move_data_to_device
 import numpy as np
