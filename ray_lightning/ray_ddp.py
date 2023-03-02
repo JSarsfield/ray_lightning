@@ -7,6 +7,10 @@ import torch
 from pytorch_lightning.strategies import DDPSpawnStrategy
 from pytorch_lightning.utilities.rank_zero import rank_zero_only
 
+from lightning_fabric.utilities.distributed import (
+    _get_default_process_group_backend_for_device,
+)
+
 import ray
 from pytorch_lightning.utilities.rank_zero import rank_zero_info
 from pytorch_lightning.utilities.seed import reset_seed
@@ -185,7 +189,7 @@ class RayStrategy(DDPSpawnStrategy):
 
         global_rank = self.global_rank
         world_size = self.world_size
-        torch_distributed_backend = self.torch_distributed_backend
+        torch_distributed_backend = _get_default_process_group_backend_for_device(self.root_device)
 
         # Taken from pytorch_lightning.utilities.distributed
         if torch.distributed.is_available(
