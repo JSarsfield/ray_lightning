@@ -332,12 +332,12 @@ class RayStrategy(DDPSpawnStrategy):
         distributed_sampler_kwargs = dict(
             num_replicas=self.num_workers, rank=self.global_rank)
         return distributed_sampler_kwargs
+    
+    # def teardown(self) -> None:
+    #     """Teardown the workers and pytorch DDP connections.
 
-    def teardown(self) -> None:
-        """Teardown the workers and pytorch DDP connections.
-
-        This function is overriding ddp_spawn_strategy's method.
-        It is run on the driver processes.
-        """
-        self.accelerator = None
-        super().teardown()
+    #     This function is overriding ddp_spawn_strategy's method.
+    #     It is run on the driver processes.
+    #     """
+    #     self.accelerator = None
+    #     super().teardown()
