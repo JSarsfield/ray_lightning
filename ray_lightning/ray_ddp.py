@@ -79,9 +79,12 @@ class RayStrategy(DDPSpawnStrategy):
                  use_gpu: bool = False,
                  init_hook: Optional[Callable] = None,
                  resources_per_worker: Optional[Dict] = None,
+                 worker_runtime_env: Optional[Dict] = None,
                  **ddp_kwargs: Union[Any, Dict[str, Any]]):
         """Initialize the Ray strategy."""
         resources_per_worker = resources_per_worker if resources_per_worker \
+            else {}
+        self.worker_runtime_env = worker_runtime_env if worker_runtime_env \
             else {}
         self.nickname = "ddp_ray"
         self.num_workers = int(num_workers)

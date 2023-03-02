@@ -110,7 +110,8 @@ class RayLauncher(_Launcher):
         worker = RayExecutor.options(
             num_cpus=self._strategy.num_cpus_per_worker,
             num_gpus=self._strategy.num_gpus_per_worker,
-            resources=self._strategy.additional_resources_per_worker).remote()
+            resources=self._strategy.additional_resources_per_worker,
+            runtime_env=self._strategy.worker_runtime_env).remote()
         return worker
 
     def teardown_workers(self):
